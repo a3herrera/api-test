@@ -11,15 +11,16 @@ import (
 )
 
 var servicesSet = wire.NewSet(
-	service.NewApisService,
+	service.NewSearchService,
 )
 
 var handlerSet = wire.NewSet(
 	rest.NewHealthHandler,
+	rest.NewSearchHandler,
 	http.NewServerHandlers,
 )
 
 func NewServer() (http.Server, error) {
-	wire.Build(handlerSet, http.New)
+	wire.Build(servicesSet, handlerSet, http.New)
 	return http.Server{}, nil
 }

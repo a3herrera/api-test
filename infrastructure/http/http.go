@@ -16,11 +16,13 @@ import (
 
 type Handlers struct {
 	health chi.Router
+	search chi.Router
 }
 
-func NewServerHandlers(health rest.HealthHandler) Handlers {
+func NewServerHandlers(health rest.HealthHandler, search rest.SearchHandler) Handlers {
 	return Handlers{
 		health: health.NewRouter(),
+		search: search.NewRouter(),
 	}
 }
 
@@ -120,7 +122,8 @@ func (server Server) GenerateServer() *http.Server {
 	server.configMiddlewares(handler)
 	server.addCors(handler)
 
-	handler.Mount("/", server.handlers.health)
+	handler.Mount("/health", server.handlers.health)
+	handler.Mount("/search", server.handlers.search)
 
 	//TODO: Modificar el puerto por una variable de entorno
 	return &http.Server{

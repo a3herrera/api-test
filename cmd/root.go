@@ -8,8 +8,8 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "crm-users",
-	Short: "Users service",
+	Use:   "searcher",
+	Short: "Search centralizer",
 }
 
 func Execute() {

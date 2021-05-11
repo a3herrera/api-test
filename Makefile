@@ -1,10 +1,10 @@
 all: clean build run
 
 build:
-	go build -ldflags "-s -w -extldflags '-static'" -o crm-users
+	go build -ldflags "-s -w -extldflags '-static'" -o searcher
 
 clean:
-	rm -f crm-users
+	rm -f searcher
 
 run:
-	./crm-users server
+	./searcher server

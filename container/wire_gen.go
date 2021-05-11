@@ -16,13 +16,15 @@ import (
 
 func NewServer() (http.Server, error) {
 	healthHandler := rest.NewHealthHandler()
-	handlers := http.NewServerHandlers(healthHandler)
+	searchService := service.NewSearchService()
+	searchHandler := rest.NewSearchHandler(searchService)
+	handlers := http.NewServerHandlers(healthHandler, searchHandler)
 	server := http.New(handlers)
 	return server, nil
 }
 
 // wire.go:
 
-var servicesSet = wire.NewSet(service.NewApisService)
+var servicesSet = wire.NewSet(service.NewSearchService)
 
-var handlerSet = wire.NewSet(rest.NewHealthHandler, http.NewServerHandlers)
+var handlerSet = wire.NewSet(rest.NewHealthHandler, rest.NewSearchHandler, http.NewServerHandlers)
