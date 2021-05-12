@@ -70,7 +70,7 @@ Actualmente no realizar accion alguna dentro del sistema mas que estar retornand
 
 Realiza una busqueda por el termine en las diferentes integraciones con otras API, permitiendo centralizar la informacion de las mismas |
 
-Recibe como query param la key value el cual sel valor que contenga ese el termino de busqueda que se utiliza en cada una
+Recibe como query param siendo esta la key *`value`* el cual sel valor que contenga ese el termino de busqueda que se utiliza en cada una
 de las diferentes apis integradas para realizar busquedas.
 
 Al no estarse enviando dicho valor, no se indica un valor http de error, mas que solo se retorna un resultado vacio sin
