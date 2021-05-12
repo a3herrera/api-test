@@ -51,7 +51,7 @@ Se pone a disposicion 2 servicios http, siendo estos:
 
 
 | METODO | path | descripcion |
-| :----: | :---- | : ---- |
+| ---- | ---- | ---- |
 | GET | /health/ping | permite conocer si el servicio esta respondiendo |
 | GET | /search     | realiza una busqueda por el termine en las diferentes integraciones con otras API, permitiendo centralizar la informacion de las mismas |
 
