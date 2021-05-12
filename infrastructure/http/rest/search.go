@@ -22,8 +22,13 @@ func (hh SearchHandler) NewRouter() chi.Router {
 	return r
 }
 
-func (hh SearchHandler) search(w http.ResponseWriter, _ *http.Request) error {
-	hh.service.Search("Hello", "movie")
-	_ = json.NewEncoder(w).Encode("pong")
+func (hh SearchHandler) search(w http.ResponseWriter, r *http.Request) error {
+	searchTerm := r.URL.Query().Get("value")
+	if searchTerm == "" {
+		_ = json.NewEncoder(w).Encode(map[string]interface{}{"results": make([]interface{}, 0)})
+		return nil
+	}
+	result := hh.service.Search(searchTerm)
+	_ = json.NewEncoder(w).Encode(result)
 	return nil
 }

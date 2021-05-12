@@ -7,7 +7,7 @@ import (
 
 var matchers = make(map[string]Matcher)
 
-func Run(searchValue string, searchTerm string) []*Result {
+func Run(searchValue string) []*Result {
 	results := make(chan *Result)
 
 	var waitGroup sync.WaitGroup
@@ -17,7 +17,7 @@ func Run(searchValue string, searchTerm string) []*Result {
 	for key, matcher := range matchers {
 		logger.Log.Debug("Send to execution ", key)
 		go func(matcher Matcher) {
-			Match(matcher, searchValue, searchTerm, results)
+			Match(matcher, searchValue, results)
 			waitGroup.Done()
 		}(matcher)
 	}
