@@ -23,6 +23,7 @@ func (hh SearchHandler) NewRouter() chi.Router {
 }
 
 func (hh SearchHandler) search(w http.ResponseWriter, _ *http.Request) error {
+	hh.service.Search("Hello", "movie")
 	_ = json.NewEncoder(w).Encode("pong")
 	return nil
 }

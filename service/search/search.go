@@ -14,7 +14,8 @@ func Run(searchValue string, searchTerm string) []*Result {
 
 	waitGroup.Add(len(matchers))
 
-	for _, matcher := range matchers {
+	for key, matcher := range matchers {
+		logger.Log.Debug("Send to execution ", key)
 		go func(matcher Matcher) {
 			Match(matcher, searchValue, searchTerm, results)
 			waitGroup.Done()
@@ -39,9 +40,7 @@ func retrieveResults(results chan *Result) []*Result {
 
 func Register(searcherType string, matcher Matcher) {
 	if _, exists := matchers[searcherType]; exists {
-		logger.Log.Errorf("the matcher %s, is already registered", searcherType)
 		return
 	}
-	logger.Log.Info("Registered ", searcherType, "matcher")
 	matchers[searcherType] = matcher
 }
