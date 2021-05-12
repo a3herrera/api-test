@@ -27,7 +27,7 @@ jobs:
           goversion: "https://dl.google.com/go/go1.16.linux-amd64.tar.gz"
           asset_name: "api-test-${{ matrix.goos }}-${{ matrix.goarch }}"
           release_tag: "main"
-          binary_name: "api-test"
+          binary_name: "searcher"
           overwrite: "TRUE"
           sha256sum: "FALSE"
           md5sum: "FALSE"
