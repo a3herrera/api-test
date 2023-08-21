@@ -1,6 +1,6 @@
 # BUILD ENVIRONMENT
 # -----------------
-FROM golang:1.16-alpine as build_environment
+FROM golang:1.20-alpine as build_environment
 
 WORKDIR /src
 ENV CGO_ENABLED=0
@@ -12,7 +12,7 @@ RUN  go build -ldflags "-s -w -extldflags '-static'" -o searcher && upx ./search
 
 # DEPLOYMENT ENVIRONMENT
 # -----------------
-FROM alpine
+FROM alpine:latest
 
 RUN apk update && apk add --no-cache bash
 WORKDIR /app
